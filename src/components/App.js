@@ -22,7 +22,7 @@ var App = React.createClass({
 
   render() {
     return <div className="App">
-      <h1><Link to="home"> Qiniu Image Gallery</Link> <small>({this.state.server ? 'server' : 'client'} version)</small></h1>
+      <h1><Link to="home"> Fraser Xu's 2014</Link> </h1>
       <hr/>
       <RouteHandler {...this.props}/>
       <footer>

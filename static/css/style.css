@@ -86,3 +86,9 @@ nav a.active {
     background: #e4e4e4;
     padding: 25px;
 }
+
+.Image-container {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+}
