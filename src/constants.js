@@ -2,7 +2,7 @@
 
 var env = require('./utils/env')
 
-var PORT = process.env.PORT
+var PORT = process.env.PORT || 4000
 var BASE_URL = env.SERVER ? `http://localhost:${PORT}` : ''
 
 module.exports = {

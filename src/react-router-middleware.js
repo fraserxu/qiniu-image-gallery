@@ -18,6 +18,7 @@ module.exports = function(routes, options) {
   options = assign({title: {}}, options)
 
   function renderApp(location, extraProps, cb) {
+
     var router = Router.create({
       location,
       routes,
