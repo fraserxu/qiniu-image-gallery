@@ -18,6 +18,15 @@ h1 img {
   vertical-align: middle;
 }
 
+h1 small a {
+  color: #4183c4;
+  text-decoration: underline;
+}
+
+h1 small a:hover {
+  text-decoration: none;
+}
+
 hr {
   margin-top: 20px;
   margin-bottom: 20px;
