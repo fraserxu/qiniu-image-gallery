@@ -89,7 +89,6 @@ var Home = React.createClass({
       <p>
         最后, 祝所有的朋友和我一样, 一切都好, 只欠烦恼.
       </p>
-      <hr/>
     </div>
   }
 })

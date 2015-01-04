@@ -33,7 +33,7 @@ var App = React.createClass({
       to: "home"
     }, " Fraser Xu's 2014"), " (", React.createElement("small", null, React.createElement(Link, {
       to: "images"
-    }, "相册")), ")"), React.createElement("hr", null), React.createElement(RouteHandler, this.props), React.createElement("footer", null, "© Copyright 2015 by Fraser Xu."));
+    }, "相册")), ")"), React.createElement("hr", null), React.createElement(RouteHandler, this.props), React.createElement("hr", null), React.createElement("footer", null, "© Copyright 2015 by Fraser Xu."));
   }
 });
 

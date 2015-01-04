@@ -25,6 +25,7 @@ var App = React.createClass({
       <h1><Link to="home"> Fraser Xu's 2014</Link> (<small><Link to="images">相册</Link></small>)</h1>
       <hr/>
       <RouteHandler {...this.props}/>
+      <hr/>
       <footer>
         © Copyright 2015 by Fraser Xu.
       </footer>

@@ -32,6 +32,7 @@ hr {
   margin-bottom: 20px;
   border: 0;
   border-top: 1px solid #222;
+  clear: both;
 }
 
 nav a.active {
