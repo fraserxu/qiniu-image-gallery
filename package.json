@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon dist/server.js",
-    "watch": "6to5 -w src -d dist & watchify dist/main.js -o static/js/main.js"
+    "watch": "6to5 -w src -d dist & watchify dist/main.js -o static/js/main.js -dv"
   },
   "repository": {
     "type": "git",

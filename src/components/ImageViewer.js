@@ -9,13 +9,8 @@ var ImageViewer = React.createClass({
   getInitialState() {
     return {
       scaled: false,
-      src: null,
       initialPosition: null
     }
-  },
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({src: nextProps.src})
   },
 
   _onClick() {
@@ -40,7 +35,7 @@ var ImageViewer = React.createClass({
 
   render() {
     var transfromStyle
-    var viewSrc = this.state.scaled ? `${this.state.src}?imageView/2/h/${window.innerHeight}` : `${this.state.src}?imageView/2/w/300/h/300`
+    var viewSrc = this.state.scaled ? `${this.props.src}?imageView/2/h/${window.innerHeight}` : `${this.props.src}?imageView/2/w/300/h/300`
 
     if (this.state.scaled) {
       var y = (window.innerHeight - this.state.initialPosition.height)/2 - this.state.initialPosition.offsetTop

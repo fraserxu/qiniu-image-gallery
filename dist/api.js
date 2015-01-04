@@ -22,7 +22,6 @@ router.get("/images", function (req, res, next) {
       res.json(images);
     } else {
       console.log(err);
-      // http://docs.qiniu.com/api/file-handle.html#error-code
     }
   });
 });
