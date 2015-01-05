@@ -1,7 +1,18 @@
 "use strict";
 
 var mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/qiniu-image-gallery");
+// mongoose.connect('mongodb://localhost/qiniu-image-gallery')
+
+var options = {
+  username: "9L46HZ4o",
+  password: "K04nNv8X667Z",
+  host: "mongo-2-1.jae.jd.com",
+  port: 27017,
+  database: "xvfeng123_mongo_2w89gt45"
+};
+
+mongoose.connect("mongodb://" + options.username + ":" + options.password + "@" + options.host + ":" + options.port + "/" + options.database);
+// mongoose.connect('localhost', options)
 
 var db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error: "));

@@ -26,6 +26,30 @@ router.get('/images', (req, res, next) => {
   
 })
 
+router.get('/initdb', (req, res, next) => {
+  var client = new qiniu.rs.Client()
+  qiniu.rsf.listPrefix('fraserxu', '', '', '', function(err, ret) {
+    if (!err) {
+      var images = ret.items.map(item => {
+        return `http://fraserxu.u.qiniudn.com/${item.key}`
+      })
+      async.map(images, (image) => {
+        Image.create({key: image}, (err, result) => {
+          return result
+        })
+      }, (err, results) => {
+        if (err) {
+          return next(err)
+        } else {
+          res.json(results)
+        }
+      })
+    } else {
+      next(err)
+    }
+  })
+})
+
 router.get('/collections', (req, res, next) => {
   Image.find({}).exec((err, results) => {
     if(err) {
