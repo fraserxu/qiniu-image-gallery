@@ -4,11 +4,12 @@ var mongoose = require('mongoose')
 var options = {
   username: '9L46HZ4o',
   password: 'K04nNv8X667Z',
-  host: 'mongo-2-1.jae.jd.com',
+  host: '10.0.31.57',
   port: 27017,
   database: 'xvfeng123_mongo_2w89gt45'
 }
 
+console.log(`mongodb://${options.username}:${options.password}@${options.host}:${options.port}/${options.database}`)
 mongoose.connect(`mongodb://${options.username}:${options.password}@${options.host}:${options.port}/${options.database}`)
 // mongoose.connect('localhost', options)
 
