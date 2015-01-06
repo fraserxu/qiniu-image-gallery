@@ -3,7 +3,6 @@
 var express = require("express");
 var qiniu = require("qiniu");
 // var Image = require('./db').Image
-var uuid = require("uuid");
 var async = require("async");
 var router = express.Router();
 
