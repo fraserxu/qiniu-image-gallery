@@ -18,7 +18,7 @@ var Images = React.createClass({
     title: "Images",
 
     fetchData: function (cb) {
-      superagent.get("" + API_URL + "/collections").accept("json").end(function (err, res) {
+      superagent.get("" + API_URL + "/images").accept("json").end(function (err, res) {
         cb(err, res && res.body);
       });
     }
