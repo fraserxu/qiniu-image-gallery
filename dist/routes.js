@@ -19,6 +19,9 @@ module.exports = [React.createElement(Route, {
   name: "images",
   handler: require("./components/Images")
 }), React.createElement(Route, {
+  name: "edit",
+  handler: require("./components/Edit")
+}), React.createElement(Route, {
   name: "image",
   path: "/image/:id",
   handler: require("./components/Image")

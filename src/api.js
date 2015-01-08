@@ -1,21 +1,23 @@
-'use strict';
+'use strict'
 
 var express = require('express')
 var qiniu = require('qiniu')
-// var Image = require('./db').Image
 var async = require('async')
 var router = express.Router()
 
-// TODO: load from env
-qiniu.conf.ACCESS_KEY = 'bovC2M9LGGAlhABWCjph4mrKM0UCtuVaZFCfrxIh'
-qiniu.conf.SECRET_KEY = 'eAMndeEDi4GuxCocxJk1GUx8wqFctZxrIeF_vKDN'
+var Image = require('./db').Image
+
+qiniu.conf.ACCESS_KEY = process.env.QINIU_ACCESS_KEY
+qiniu.conf.SECRET_KEY = process.env.QINIU_SECRET_KEY
+const bucket = process.env.QINIU_BUCKET
+const domain = process.env.QINIU_DOMAIN
 
 router.get('/images', (req, res, next) => {
   var client = new qiniu.rs.Client()
-  qiniu.rsf.listPrefix('fraserxu', '', '', '', function(err, ret) {
+  qiniu.rsf.listPrefix(bucket, '', '', '', function(err, ret) {
     if (!err) {
       var images = ret.items.map(item => {
-        return `http://fraserxu.u.qiniudn.com/${item.key}`
+        return `http://${bucket}${domain}/${item.key}`
       })
       res.json(images)
     } else {
@@ -27,10 +29,10 @@ router.get('/images', (req, res, next) => {
 
 router.get('/initdb', (req, res, next) => {
   var client = new qiniu.rs.Client()
-  qiniu.rsf.listPrefix('fraserxu', '', '', '', function(err, ret) {
+  qiniu.rsf.listPrefix(bucket, '', '', '', function(err, ret) {
     if (!err) {
       var images = ret.items.map(item => {
-        return `http://fraserxu.u.qiniudn.com/${item.key}`
+        return `http://${bucket}${domain}/${item.key}`
       })
       async.map(images, (image) => {
         Image.create({key: image}, (err, result) => {
@@ -51,10 +53,15 @@ router.get('/initdb', (req, res, next) => {
 
 router.get('/collections', (req, res, next) => {
   Image.find({}).exec((err, results) => {
-    if(err) {
+    if (err) {
       return next(err)
     } else {
-      var data = results.map((result) => result.key)
+      var data = results.map((result) => {
+        return {
+          key: result.key,
+          description: result.description || ''
+        }
+      })
       res.json(data)
     }
   })
@@ -95,6 +102,14 @@ router.post('/image', (req, res, next) => {
           res.json(image)
         }
       })
+    }
+  })
+})
+
+router.get('/user', (req, res, next) => {
+  res.json({
+    user: {
+      name: 'fraserxu'
     }
   })
 })

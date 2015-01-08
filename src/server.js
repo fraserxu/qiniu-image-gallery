@@ -2,6 +2,7 @@
 
 var path = require('path')
 require('node-jsx').install({extension: '.js'})
+require('dotenv').load()
 
 var bodyParser = require('body-parser')
 var compression = require('compression')

@@ -2,20 +2,22 @@
 
 var express = require("express");
 var qiniu = require("qiniu");
-// var Image = require('./db').Image
 var async = require("async");
 var router = express.Router();
 
-// TODO: load from env
-qiniu.conf.ACCESS_KEY = "bovC2M9LGGAlhABWCjph4mrKM0UCtuVaZFCfrxIh";
-qiniu.conf.SECRET_KEY = "eAMndeEDi4GuxCocxJk1GUx8wqFctZxrIeF_vKDN";
+var Image = require("./db").Image;
+
+qiniu.conf.ACCESS_KEY = process.env.QINIU_ACCESS_KEY;
+qiniu.conf.SECRET_KEY = process.env.QINIU_SECRET_KEY;
+var bucket = process.env.QINIU_BUCKET;
+var domain = process.env.QINIU_DOMAIN;
 
 router.get("/images", function (req, res, next) {
   var client = new qiniu.rs.Client();
-  qiniu.rsf.listPrefix("fraserxu", "", "", "", function (err, ret) {
+  qiniu.rsf.listPrefix(bucket, "", "", "", function (err, ret) {
     if (!err) {
       var images = ret.items.map(function (item) {
-        return "http://fraserxu.u.qiniudn.com/" + item.key;
+        return "http://" + bucket + "" + domain + "/" + item.key;
       });
       res.json(images);
     } else {
@@ -26,10 +28,10 @@ router.get("/images", function (req, res, next) {
 
 router.get("/initdb", function (req, res, next) {
   var client = new qiniu.rs.Client();
-  qiniu.rsf.listPrefix("fraserxu", "", "", "", function (err, ret) {
+  qiniu.rsf.listPrefix(bucket, "", "", "", function (err, ret) {
     if (!err) {
       var images = ret.items.map(function (item) {
-        return "http://fraserxu.u.qiniudn.com/" + item.key;
+        return "http://" + bucket + "" + domain + "/" + item.key;
       });
       async.map(images, function (image) {
         Image.create({ key: image }, function (err, result) {
@@ -54,7 +56,10 @@ router.get("/collections", function (req, res, next) {
       return next(err);
     } else {
       var data = results.map(function (result) {
-        return result.key;
+        return {
+          key: result.key,
+          description: result.description || ""
+        };
       });
       res.json(data);
     }
@@ -96,6 +101,14 @@ router.post("/image", function (req, res, next) {
           res.json(image);
         }
       });
+    }
+  });
+});
+
+router.get("/user", function (req, res, next) {
+  res.json({
+    user: {
+      name: "fraserxu"
     }
   });
 });

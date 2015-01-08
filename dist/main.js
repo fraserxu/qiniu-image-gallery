@@ -5,6 +5,11 @@ require("setimmediate");
 var React = require("react");
 var Router = require("react-router");
 
+if ("production" !== process.env.NODE_ENV) {
+  // Enable React devtools
+  window.React = React;
+}
+
 var fetchData = require("./utils/fetchData");
 var getTitle = require("./utils/getTitle");
 var routes = require("./routes");
