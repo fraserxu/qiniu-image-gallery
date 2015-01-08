@@ -33,6 +33,7 @@
     "express-session": "^1.9.3",
     "jade": "^1.8.2",
     "morgan": "^1.5.1",
+    "newforms": "^0.10.1",
     "node-jsx": "^0.12.4",
     "qiniu": "^6.1.6",
     "react": "^0.12.2",

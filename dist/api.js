@@ -113,4 +113,13 @@ router.get("/user", function (req, res, next) {
   });
 });
 
+router.post("/login", function (req, res, next) {
+  console.log("body", req.body);
+  res.json({
+    user: {
+      name: "fraserxu"
+    }
+  });
+});
+
 module.exports = router;

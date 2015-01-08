@@ -8,6 +8,113 @@ body {
   max-width: 70em;
 }
 
+/* App */
+
+footer {
+  width: 100%;
+  margin: 40px auto;
+  text-align: center;
+}
+
+/* Login */
+.LoginDialog {
+  margin: 0 auto;
+  width: 400px;
+}
+
+.Login {
+  width: 400px;
+  margin: 0 auto;
+  padding: 20px 30px;
+  border-radius: 4px;
+  box-shadow: 0 1px 5px rgba(0,0,0,.1);
+  background: #fdfdfd;
+  border: 1px solid #a4baca;
+  box-sizing: border-box;
+}
+
+label {
+  font-weight: 700;
+}
+
+form {
+  margin: 0;
+}
+
+form label {
+  display: block;
+  margin: 0 0 5px;
+}
+
+input, select, textarea {
+  border: 1px solid #ccc;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+}
+
+input {
+  padding: 9px 8px 7px;
+}
+
+.lfField {
+  clear: left;
+  min-height: 40px;
+}
+
+.lfFieldLabel, .lfFieldInput {
+  display: inline;
+  float: left;
+  padding-top: 5px;
+  width: 35%;
+}
+
+.lfFieldInput {
+  width: 65%;
+}
+
+.lfActions {
+  margin: 0;
+  overflow: hidden;
+  padding-top: 5px;
+  clear: left;
+  min-height: 40px;
+}
+
+.lfForgot {
+  display: inline;
+  float: left;
+  margin-top: 8px;
+  text-decoration: underline;
+}
+
+.lfSubmit {
+  float: right;
+  border: 1px solid #3d8b5f;
+  background-color: #6bb38a;
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#6bb38a),to(#3d8b5f));
+  background-image: -webkit-linear-gradient(top,#6bb38a,#3d8b5f);
+  background-image: -moz-linear-gradient(top,#6bb38a,#3d8b5f);
+  background-image: -o-linear-gradient(top,#6bb38a,#3d8b5f);
+  background-image: -ms-linear-gradient(top,#6bb38a,#3d8b5f);
+  background-image: linear-gradient(top,#6bb38a,#3d8b5f);
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#6bb38a', EndColorStr='#3d8b5f');
+  background-position: 50% 50%;
+  text-shadow: 0 1px 1px #1e693f;
+  color: #fff;
+}
+
+form p {
+  margin-bottom: 10px;
+}
+
+
 a { color: #4183c4; }
 
 h1 a {

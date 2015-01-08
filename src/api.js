@@ -114,4 +114,13 @@ router.get('/user', (req, res, next) => {
   })
 })
 
+router.post('/login', (req, res, next) => {
+  console.log('body', req.body)
+  res.json({
+    user: {
+      name: 'fraserxu'
+    }
+  })
+})
+
 module.exports = router

@@ -5,9 +5,12 @@ var superagent = require('superagent')
 var {Link, RouteHandler} = require('react-router')
 
 var {API_URL, TITLE} = require('../constants')
-var Profile = require('./Profile')
+var Header = require('./Header')
 
 var App = React.createClass({
+
+  displayName: 'App',
+
   statics: {
     title: TITLE,
 
@@ -16,10 +19,7 @@ var App = React.createClass({
         cb(err, res && res.body)
       })
     }
-  },
 
-  getDefaultProps() {
-    return {data: {}}
   },
 
   getInitialState() {
@@ -33,14 +33,17 @@ var App = React.createClass({
   },
 
   render() {
-    var {user} = this.props.data.app
+    let {user} = this.props.data.app
 
     return <div className="App">
-      <h1><Link to="home"> Qiniu Image gallery</Link> (<small><Link to="images">example</Link></small>)</h1>
-      <Profile user={user} />
-      <hr/>
+
+      { user.loggedIn
+        ? <Header user={user} />
+        : ''
+      }
+
       <RouteHandler {...this.props}/>
-      <hr/>
+      
       <footer>
         © Copyright 2015 by Fraser Xu.
       </footer>
