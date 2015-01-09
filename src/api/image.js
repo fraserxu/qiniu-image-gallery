@@ -5,7 +5,7 @@ var qiniu = require('qiniu')
 var async = require('async')
 var router = express.Router()
 
-var Image = require('./db').Image
+var Image = require('../models/image')
 
 qiniu.conf.ACCESS_KEY = process.env.QINIU_ACCESS_KEY
 qiniu.conf.SECRET_KEY = process.env.QINIU_SECRET_KEY
@@ -24,7 +24,6 @@ router.get('/images', (req, res, next) => {
       next(err)
     }
   })
-  
 })
 
 router.get('/initdb', (req, res, next) => {
@@ -102,23 +101,6 @@ router.post('/image', (req, res, next) => {
           res.json(image)
         }
       })
-    }
-  })
-})
-
-router.get('/user', (req, res, next) => {
-  res.json({
-    user: {
-      name: 'fraserxu'
-    }
-  })
-})
-
-router.post('/login', (req, res, next) => {
-  console.log('body', req.body)
-  res.json({
-    user: {
-      name: 'fraserxu'
     }
   })
 })

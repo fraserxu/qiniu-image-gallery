@@ -10,25 +10,40 @@ var express = require("express");
 var favicon = require("serve-favicon");
 var errorhandler = require("errorhandler");
 var logger = require("morgan");
+var cookieParser = require("cookie-parser");
 var session = require("express-session");
+var passport = require("passport");
+var flash = require("connect-flash");
 var React = require("react");
 var server = express();
+var mongoose = require("mongoose");
 
-var api = require("./api");
+// connect db
+mongoose.connect(process.env.MONGODB_URL);
+
+// init passport
+require("./passport")(passport);
+
 var pkg = require("../package.json");
 var reactRouter = require("./react-router-middleware");
 
+// middlewares
 server.set("view engine", "jade");
 server.set("views", path.join(__dirname, "../views"));
 server.use(logger(server.get("env") === "production" ? "combined" : "dev"));
 server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json());
+server.use(cookieParser());
 server.use(express["static"](path.join(__dirname, "../static")));
 server.use(compression());
 server.use(favicon(path.join(__dirname, "../static/favicon.ico")));
 server.use(session({ secret: process.env.SECRET || "secret", resave: false, saveUninitialized: true }));
+server.use(passport.initialize());
+server.use(passport.session());
+server.use(flash());
 
-server.use("/api", api);
+server.use("/api", require("./api/auth")(passport));
+server.use("/api", require("./api/image"));
 server.use(reactRouter(require("./routes")));
 
 if ("production" != server.get("env")) {

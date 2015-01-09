@@ -42,7 +42,7 @@ var Edit = React.createClass({
 
   render() {
     var LoginForm = forms.Form.extend({
-      username: forms.CharField(),
+      email: forms.CharField(),
       password: forms.CharField({widget: forms.PasswordInput})
     })
 

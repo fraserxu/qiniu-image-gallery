@@ -5,7 +5,7 @@ var qiniu = require("qiniu");
 var async = require("async");
 var router = express.Router();
 
-var Image = require("./models/image");
+var Image = require("../models/image");
 
 qiniu.conf.ACCESS_KEY = process.env.QINIU_ACCESS_KEY;
 qiniu.conf.SECRET_KEY = process.env.QINIU_SECRET_KEY;

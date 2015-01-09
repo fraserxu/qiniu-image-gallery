@@ -1,5 +1,4 @@
 var mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/qiniu-image-gallery')
 
 var imageSchema = mongoose.Schema({
   key: { type: String, required: true, unique: true },
@@ -7,6 +6,4 @@ var imageSchema = mongoose.Schema({
   description: { type: String }
 })
 
-var Image = mongoose.model('Image', imageSchema)
-
-exports.Image = Image
+module.exports = mongoose.model('Image', imageSchema)
