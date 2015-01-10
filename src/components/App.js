@@ -3,6 +3,7 @@
 var React = require('react')
 var superagent = require('superagent')
 var {Link, RouteHandler} = require('react-router')
+var AuthenticationMixin = require('../mixins/AuthenticationMixin')
 
 var {API_URL, TITLE} = require('../constants')
 var Header = require('./Header')
@@ -12,14 +13,7 @@ var App = React.createClass({
   displayName: 'App',
 
   statics: {
-    title: TITLE,
-
-    fetchData(cb) {
-      superagent.get(`${API_URL}/user`).accept('json').end((err, res) => {
-        cb(err, res && res.body)
-      })
-    }
-
+    title: TITLE
   },
 
   getInitialState() {
@@ -33,7 +27,7 @@ var App = React.createClass({
   },
 
   render() {
-    let {user} = this.props.data.app
+    // let {user} = this.props.data.app
 
     return <div className="App">
 

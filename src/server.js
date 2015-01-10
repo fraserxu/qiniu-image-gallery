@@ -22,7 +22,7 @@ var mongoose = require('mongoose')
 mongoose.connect(process.env.MONGODB_URL)
 
 // init passport
-require('./passport')(passport)
+require('./api/passport')(passport)
 
 var pkg = require('../package.json')
 var reactRouter = require('./react-router-middleware')
@@ -42,6 +42,7 @@ server.use(passport.initialize())
 server.use(passport.session())
 server.use(flash())
 
+// routers
 server.use('/api', require('./api/auth')(passport))
 server.use('/api', require('./api/image'))
 server.use(reactRouter(require('./routes')))

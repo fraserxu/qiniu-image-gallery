@@ -4,10 +4,16 @@ var React = require('react')
 var {Link} = require('react-router')
 var superagent = require('superagent')
 var ImageViewer = require('./ImageViewer')
+var AuthenticationMixin = require('../mixins/AuthenticationMixin')
 
 var {API_URL} = require('../constants')
 
 var Edit = React.createClass({
+
+  displayName: 'Edit',
+
+  mixins: [ AuthenticationMixin ],
+
   statics: {
     title: 'Edit',
 

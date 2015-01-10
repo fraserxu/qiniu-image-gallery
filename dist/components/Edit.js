@@ -6,6 +6,7 @@ var _ref = require("react-router");
 var Link = _ref.Link;
 var superagent = require("superagent");
 var ImageViewer = require("./ImageViewer");
+var AuthenticationMixin = require("../mixins/AuthenticationMixin");
 
 var _ref2 = require("../constants");
 
@@ -13,7 +14,9 @@ var API_URL = _ref2.API_URL;
 
 
 var Edit = React.createClass({
+
   displayName: "Edit",
+
   statics: {
     title: "Edit",
 
@@ -23,6 +26,8 @@ var Edit = React.createClass({
       });
     }
   },
+
+  mixins: [AuthenticationMixin],
 
   getDefaultProps: function () {
     return { data: {} };

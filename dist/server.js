@@ -42,6 +42,7 @@ server.use(passport.initialize());
 server.use(passport.session());
 server.use(flash());
 
+// routers
 server.use("/api", require("./api/auth")(passport));
 server.use("/api", require("./api/image"));
 server.use(reactRouter(require("./routes")));

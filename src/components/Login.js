@@ -7,15 +7,13 @@ var forms = require('newforms')
 
 var {API_URL} = require('../constants')
 
-var Edit = React.createClass({
-  statics: {
-    title: 'Login'
+var Login = React.createClass({
 
-    // fetchData(cb) {
-    //   superagent.get(`${API_URL}/images`).accept('json').end(function(err, res) {
-    //     cb(err, res && res.body)
-    //   })
-    // }
+  displayName: 'Login',
+
+  statics: {
+    title: 'Login',
+    attemptedTransition: null
   },
 
   getDefaultProps() {
@@ -57,4 +55,4 @@ var Edit = React.createClass({
   }
 })
 
-module.exports = Edit
+module.exports = Login
