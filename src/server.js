@@ -48,7 +48,7 @@ server.use('/api', require('./api/image'))
 server.use(reactRouter(require('./routes')))
 
 if ('production' != server.get('env')) {
-  server.use(errorhandler())
+  server.use(errorhandler({server: server}))
 }
 
 server.set('host', process.env.HOST || '0.0.0.0')
