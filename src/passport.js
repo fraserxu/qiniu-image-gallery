@@ -25,15 +25,15 @@ module.exports = function(passport) {
           return done(err)
 
         if (user) {
-          return done(null, false, req.flash('signupMessage', 'That email is already taken.'))
+          return done(null, false, { msg: 'Email taken.'})
         } else {
           var newUser = new User()
           newUser.local.email = email
           newUser.local.password = newUser.generateHash(password)
+          newUser.created_at = new Date().toISOString()
 
           newUser.save(function(err) {
-            if (err)
-              throw err
+            if (err) return done(err)
 
             return done(null, newUser)
           })

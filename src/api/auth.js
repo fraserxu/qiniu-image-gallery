@@ -12,13 +12,17 @@ var authRoute = function(passport) {
     })
   })
 
-  router.post('/login', passport.authenticate('local-login'), (req, res, next) => {
-    console.log(req.user)
-    res.json(req.user)
-  })
+  router.post('/login', passport.authenticate('local-login'))
 
-  router.post('/signup', passport.authenticate('local-signup'), (req, res, next) => {
-    console.log('signup', req)
+  router.post('/signup', (req, res, next) => {
+    passport.authenticate('local-signup', (err, user, info) => {
+      if (err) return next(err)
+      if (!user) return res.status(409).send(info)
+      req.logIn(user, (err) => {
+        if (err) return next(err)
+        res.send(user)
+      })
+    })(req, res, next)
   })
 
   return router

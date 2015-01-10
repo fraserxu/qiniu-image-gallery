@@ -19,6 +19,9 @@ module.exports = [React.createElement(Route, {
   name: "login",
   handler: require("./components/Login")
 }), React.createElement(Route, {
+  name: "signup",
+  handler: require("./components/Signup")
+}), React.createElement(Route, {
   name: "images",
   handler: require("./components/Images")
 }), React.createElement(Route, {
